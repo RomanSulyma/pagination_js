@@ -12,7 +12,7 @@ export const getDataObject = () => {
     return document.querySelector(elementsNames.inputText).value;
 };
 
-const renderTableElem = (data) => {
+    const renderTableElem = (data) => {
     const tableRow = `<tr class="row">
         <th>${data.id}</th>
         <th>${data.text}</th>
@@ -22,23 +22,20 @@ const renderTableElem = (data) => {
 };
 
 export const renderTable = (page, dataArr) => {
-
     const start = (page - 1) * 10;
     const end = page * 10;
-
     const arrPerPage = dataArr.slice(start, end);
 
     arrPerPage.forEach(value => {
         renderTableElem(value);
     })
-
 };
 
 export const clearTable = () => {
     if(document.querySelector(elementsNames.tableRow) != null){
-        document.querySelector(elementsNames.tableRow).innerHTML  = '';
+        let elements = document.querySelectorAll(elementsNames.tableRow);
+        elements.forEach(el => el.remove());
     }
-
 };
 
 export const clearInput = () => {

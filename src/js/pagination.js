@@ -2,7 +2,7 @@ import {elementsNames} from './view';
 
 
 export const changePageNumber = (attribValue) => {
- const attrib = document.querySelector(elementsNames.table).setAttribute('data-page', attribValue);
+ document.querySelector(elementsNames.table).setAttribute('data-page', attribValue);
 };
 
 export const  getPageNumber = () => {
@@ -10,22 +10,23 @@ export const  getPageNumber = () => {
 };
 
 export const renderPageButtons = (page, allPages) => {
-
+    deleteButtons();
     if(page > 1) {
-        document.querySelector(elementsNames.table).insertAdjacentHTML('afterend', `<input type="button" class="page-button-left" value="${page - 1}">`);
+        document.querySelector(elementsNames.table).insertAdjacentHTML('afterend', `<input type="button" class="page-button-left" value="LEFT">`);
     }
     if(page < allPages) {
-        document.querySelector(elementsNames.table).insertAdjacentHTML('afterend', `<input type="button" class="page-button-right" value="${page + 1}">`);
+        document.querySelector(elementsNames.table).insertAdjacentHTML('afterend', `<input type="button" class="page-button-right" value="RIGHT">`);
     }
-
 };
 
-export const deleteButtons = () => {
-    if(document.querySelector(elementsNames.pageButtonLeft) != null){
-        document.querySelector(elementsNames.pageButtonLeft).innerHTML  = '';
-    }
+    const deleteButtons = () => {
 
+    if(document.querySelector(elementsNames.pageButtonLeft) != null){
+        let leftElem = document.querySelector(elementsNames.pageButtonLeft);
+        leftElem.parentNode.removeChild(leftElem);
+    }
     if(document.querySelector(elementsNames.pageButtonRight) != null){
-        document.querySelector(elementsNames.pageButtonRight).innerHTML  = '';
+       let rightElem =  document.querySelector(elementsNames.pageButtonRight);
+       rightElem.parentNode.removeChild(rightElem);
     }
 };
